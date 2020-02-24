@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../controllers/controller.js"></script>
+    <script src="../models/cabocañaveral.js"></script>
+</head>
+
+<body>
+    <div class="row justify-content-center py-5">
+        <h1>Bienvenido al parque de cohetes de Cabo Cañaveral</h1>
+    </div>
+    <div class="container">
+        <div id="tab1">
+            <div class="row py-2">
+                <div class="pr-1">
+                    <button onclick="myButtonClicked(this)">Create Rocket 1</button>
+                </div>
+                <div class="pr-1">
+                    <button onclick="myButtonClicked(this)">Create Rocket 2</button>
+                </div>
+            </div>
+            <div class="row py-2">
+                <div class="pr-1">
+                    <button onclick="">Accelerate Rocket 1</button>
+                </div>
+
+                <div class="pr-1">
+                    <button onclick="">Accelerate Rocket 2</button>
+                </div>
+
+                <div class="pr-1">
+                    <button onclick="">Break Rocket 1</button>
+                </div>
+
+                <div class="pr-1">
+                    <button onclick="">Break Rocket 2</button>
+                </div>
+            </div>
+            <div class="row py-2">
+                <div class="pr-1">
+                    <button onclick="">Print Rocket 1 Info</button>
+                </div>
+                <div class="pr-1">
+                    <button onclick="">Print Rocket 2 Info</button>
+                </div>
+
+                <div class="pr-1">
+                    <button onclick="">Print all rockets</button>
+                </div>
+            </div>
+        </div>
+        <div id="tab2">
+            <div class="container">
+                <div class="row py-2">
+                    <div class="col-6">
+                        <label for="code">Introduce el código del cohete</label>
+                    </div>
+                    <div class="col-6">
+                        <input type="text" id="code" name="Código">
+                    </div>
+                </div>
+                <div class="row py-2">
+                    <div class="col-6">
+                        <label for="thrusters">Introduce el número de propulsores</label>
+                    </div>
+                    <div class="col-6">
+                        <input type="text" id="thrusters" name="Nº propulsores">
+                    </div>
+                </div>
+                <div class="row py-2">
+                    <button onclick="introduceRocket()">Acepta</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <p id="rocketsList"></p>
+    </div>
+</body>
+
+</html>
