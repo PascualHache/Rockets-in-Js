@@ -11,8 +11,7 @@ function iniciar() {
 function createRocket(code: string, thrusters: number) {
     rocketsObj[code] = new newRocket(code, thrusters);
     let rocEle: any = document.getElementById("rocketsList");
-    let rocEleContent = rocEle.innerHTML;
-    rocEle.innerText = rocEleContent + " " + code + " " + thrusters + "<br />";
+    let rocEleContent: any= rocEle.innerHTML += code + " " + thrusters +" <br>"; 
 }
 
 function toggle() {
@@ -129,4 +128,11 @@ function clearFields() {
         thrusters.value = "";
         potencia.value = "";
     }
+}
+
+function printRocketInfo(code:String){
+    let rocEle: any = document.getElementById("rocketsList");
+    let thrusters_: any= rocketsObj[code].thrusters;
+    let rocEleContent: any= rocEle.innerHTML += code + " " + thrusters_ +" <br>"; 
+
 }

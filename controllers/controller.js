@@ -9,8 +9,7 @@ function iniciar() {
 function createRocket(code, thrusters) {
     rocketsObj[code] = new newRocket(code, thrusters);
     var rocEle = document.getElementById("rocketsList");
-    var rocEleContent = rocEle.innerHTML;
-    rocEle.innerText = rocEleContent + " " + code + " " + thrusters + "<br />";
+    var rocEleContent = rocEle.innerHTML += code + " " + thrusters + " <br>";
 }
 function toggle() {
     clearFields();
@@ -114,4 +113,9 @@ function clearFields() {
         thrusters.value = "";
         potencia.value = "";
     }
+}
+function printRocketInfo(code) {
+    var rocEle = document.getElementById("rocketsList");
+    var thrusters_ = rocketsObj[code].thrusters;
+    var rocEleContent = rocEle.innerHTML += code + " " + thrusters_ + " <br>";
 }
