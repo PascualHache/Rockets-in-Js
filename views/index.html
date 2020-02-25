@@ -59,26 +59,42 @@
         </div>
         <div id="tab2">
             <div class="container">
-                <div class="row py-2">
-                    <div class="col-6">
-                        <label for="code">Introduce el código del cohete</label>
+                <form> 
+                    <div class="form-group">
+                        <div class="row py-2">
+                            <div class="col-6">
+                                <label for="code">Introduce el código del cohete</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="text" id="code" name="codigo" pattern=".{8}" required>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col-6">
+                                <label for="thrusters">Introduce el número de propulsores</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="tel" id="thrusters" name="Nº propulsores" pattern="[0-9]+" required>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col-6">
+                                <label for="potencia">Introduce la potencia máxima por cada propulsor(separado por comas)</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="text" id="potencia" name="potencia" required>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <button id="guardaRocket" onclick="validateForm()">Acepta</button>
+                        </div>
+                        
                     </div>
-                    <div class="col-6">
-                        <input type="text" id="code" name="Código">
-                    </div>
-                </div>
-                <div class="row py-2">
-                    <div class="col-6">
-                        <label for="thrusters">Introduce el número de propulsores</label>
-                    </div>
-                    <div class="col-6">
-                        <input type="text" id="thrusters" name="Nº propulsores">
-                    </div>
-                </div>
-                <div class="row py-2">
-                    <button onclick="introduceRocket()">Acepta</button>
-                </div>
+                </form>
             </div>
+        </div>
+        <div class="row py-2">
+            <button id="guardaRocket" onclick="validaPropulsores()">Test Propulsores</button>
         </div>
     </div>
     <div class="row justify-content-center">
