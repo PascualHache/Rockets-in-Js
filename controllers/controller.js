@@ -1,18 +1,17 @@
 "use strict";
-window.onload = iniciar;
+// window.onload = iniciar;
 var id = 0;
 var rocketsObj = {};
-function iniciar() {
-    var listenerr = document.getElementById("login");
-    listenerr.addEventListener('guardaRocket', validateForm, false);
-}
+// function iniciar() {
+//     let listenerr: any = document.getElementById("login");
+//     listenerr.addEventListener('guardaRocket', validateForm, false);
+// }
 function createRocket(code, thrusters) {
     rocketsObj[code] = new newRocket(code, thrusters);
     var rocEle = document.getElementById("rocketsList");
     var rocEleContent = rocEle.innerHTML += code + " " + thrusters + " <br>";
 }
 function toggle() {
-    clearFields();
     var t1 = document.getElementById("tab1");
     var t2 = document.getElementById("tab2");
     if (t2.style.display === "inline-block") {
@@ -23,6 +22,7 @@ function toggle() {
         t2.style.display = "inline-block";
         t1.style.display = "none";
     }
+    clearFields();
 }
 function introduceRocket() {
     var codeName = document.getElementById("code");
@@ -116,6 +116,6 @@ function clearFields() {
 }
 function printRocketInfo(code) {
     var rocEle = document.getElementById("rocketsList");
-    var thrusters_ = rocketsObj[code].thrusters;
+    var thrusters_ = rocketsObj(code).thrusters;
     var rocEleContent = rocEle.innerHTML += code + " " + thrusters_ + " <br>";
 }

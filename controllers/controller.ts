@@ -1,12 +1,12 @@
-window.onload = iniciar;
+// window.onload = iniciar;
 
 var id = 0;
 var rocketsObj: any = {};
 
-function iniciar() {
-    let listenerr: any = document.getElementById("login");
-    listenerr.addEventListener('guardaRocket', validateForm, false);
-}
+// function iniciar() {
+//     let listenerr: any = document.getElementById("login");
+//     listenerr.addEventListener('guardaRocket', validateForm, false);
+// }
 
 function createRocket(code: string, thrusters: number) {
     rocketsObj[code] = new newRocket(code, thrusters);
@@ -15,7 +15,6 @@ function createRocket(code: string, thrusters: number) {
 }
 
 function toggle() {
-    clearFields();
     let t1: any = document.getElementById("tab1");
     let t2: any = document.getElementById("tab2");
 
@@ -28,7 +27,7 @@ function toggle() {
         t2.style.display = "inline-block";
         t1.style.display = "none";
     }
-
+    clearFields();
 }
 
 function introduceRocket() {
@@ -132,7 +131,7 @@ function clearFields() {
 
 function printRocketInfo(code:String){
     let rocEle: any = document.getElementById("rocketsList");
-    let thrusters_: any= rocketsObj[code].thrusters;
+    let thrusters_: any= rocketsObj(code).thrusters;
     let rocEleContent: any= rocEle.innerHTML += code + " " + thrusters_ +" <br>"; 
 
 }
