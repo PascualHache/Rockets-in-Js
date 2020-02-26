@@ -2,16 +2,20 @@
 
 var id = 0;
 var rocketsObj: any = {};
+var arrPrecessed: Number[] = [];
 
 // function iniciar() {
 //     let listenerr: any = document.getElementById("login");
 //     listenerr.addEventListener('guardaRocket', validateForm, false);
 // }
 
-function createRocket(code: string, thrusters: number) {
-    rocketsObj[code] = new newRocket(code, thrusters);
-    let rocEle: any = document.getElementById("rocketsList");
-    let rocEleContent: any= rocEle.innerHTML += code + " " + thrusters +" <br>"; 
+function createRocket(code: string, thrusters: number, arrPrecessed: Number[]) {
+    rocketsObj[code] = new newRocket(code, thrusters, arrPrecessed);
+    // let rocEle: any = document.getElementById("rocketsList");
+    // let rocEleContent: any= rocEle.innerHTML += code + " " + thrusters +" <br>"; 
+    //  console.log(rocketsObj[code].thrusters);
+    // rocketsObj[code].thrusters
+    printRocketInfo(code);
 }
 
 function toggle() {
@@ -34,7 +38,7 @@ function introduceRocket() {
     let codeName: any = document.getElementById("code");
     let thrusters: any = document.getElementById("thrusters");
     let potencia: any = document.getElementById("potencia");
-    createRocket(codeName.value, thrusters.value);
+    createRocket(codeName.value, thrusters.value, arrPrecessed);
     toggle();
     console.log(rocketsObj);
 }
@@ -52,7 +56,7 @@ function validaPropulsores() {
     let potencia: any = document.getElementById("potencia");
     let numeroPropul: any = document.getElementById("thrusters")
     var arr: Number[] = potencia.value.split(",").map(Number);
-    let arrPrecessed = validaArraydeNums(arr);
+    arrPrecessed = validaArraydeNums(arr);
     console.log("Validacion de propulsores");
     console.log(arrPrecessed.length);
     console.log(arrPrecessed.length != parseInt(numeroPropul.value));
@@ -129,9 +133,9 @@ function clearFields() {
     }
 }
 
-function printRocketInfo(code:String){
+function printRocketInfo(code:any){
     let rocEle: any = document.getElementById("rocketsList");
-    let thrusters_: any= rocketsObj(code).thrusters;
-    let rocEleContent: any= rocEle.innerHTML += code + " " + thrusters_ +" <br>"; 
+    // let thrusters_: any= rocketsObj[code].thrusters;
+    let rocEleContent: any= rocEle.innerHTML +="Rocket code:"+ code + " " + "Nº propulsores:" + rocketsObj[code].thrusters +"Boosters MAX power: "+rocketsObj[code].showBoosters()+" <br>"; 
 
 }
