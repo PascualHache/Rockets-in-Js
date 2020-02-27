@@ -1,9 +1,9 @@
 var id = 0;
 var rocketsObj: any = {};
-var arrPrecessed: Number[] = [];
+var arrPrecessed: number[] = [];
 var arrRockets: string[] = [];
 
-function createRocket(code: string, thrusters: number, arrPrecessed: Number[]) {
+function createRocket(code: string, thrusters: number, arrPrecessed: number[]) {
     rocketsObj[code] = new newRocket(code, thrusters, arrPrecessed);
     arrRockets.push(code);
     printRocketInfo(code);
@@ -22,7 +22,7 @@ function toggle() {
         t2.style.display = "inline-block";
         t1.style.display = "none";
     }
-    clearFields();
+
 }
 
 function introduceRocket() {
@@ -32,6 +32,7 @@ function introduceRocket() {
     createRocket(codeName.value, thrusters.value, arrPrecessed);
     toggle();
     console.log(rocketsObj);
+    clearFields();
 }
 
 function validateForm() {
@@ -107,6 +108,8 @@ function clearFields() {
     let codeName: any = document.getElementById("code");
     let thrusters: any = document.getElementById("thrusters");
     let potencia: any = document.getElementById("potencia");
+    let rocEle: any = document.getElementById("rocketsList");
+    rocEle.innerHTML = "";
     if (codeName.value != "" || thrusters.value != "" || potencia.value != "") {
         codeName.value = "";
         thrusters.value = "";
@@ -114,24 +117,42 @@ function clearFields() {
     }
 }
 
-function printRocketInfo(code:string){
+function printRocketInfo(code: string) {
+    // clearFields();
     let rocEle: any = document.getElementById("rocketsList");
-    rocEle.innerHTML +="Rocket code:"+ code + " " + "Nº propulsores:" + rocketsObj[code].thrusters +"Boosters MAX power: "+rocketsObj[code].showBoosters()+" <br>"; 
+    rocEle.innerHTML += "Rocket code: " + code + " / Nº propulsores: " + rocketsObj[code].thrusters + " / Boosters MAX power: " + rocketsObj[code].showBoosters() + " / Current Speed: " + rocketsObj[code].currentSpeed +" <br>";
 }
 
-function accelerate(el: any){
-    let a:number= getObjectNameId(el);
-    console.log(arrRockets);
-    rocketsObj[arrRockets[a]].acelera();
-    console.log(rocketsObj[arrRockets[a]].currentPower);
+function accelerate(el: any) {
+    if (arrRockets.length < 1) {
+        alert("Primero introduce los cohetes");
+    } else {
+        let a: number = getObjectNameId(el);
+        rocketsObj[arrRockets[a]].acelera();
+    }
 }
 
-function slow(el: any){
-    let a:number= getObjectNameId(el);
-    rocketsObj[arrRockets[a]].frena();
-    console.log(rocketsObj[arrRockets[a]].currentPower);
+function slow(el: any) {
+    if (arrRockets.length < 1) {
+        alert("Primero introduce los cohetes");
+    } else {
+        let a: number = getObjectNameId(el);
+        rocketsObj[arrRockets[a]].frena();
+    }
 }
 
-function getObjectNameId(el: any){
-    return parseInt(el.id[el.id.length -1]);
+function getObjectNameId(el: any) {
+    return parseInt(el.id[el.id.length - 1]);
+}
+
+function printRocket(el: any) {
+    clearFields();
+    let a: number = getObjectNameId(el);
+    if (a == 2) {
+        for (let index = 0; index < arrRockets.length; index++) {
+            printRocketInfo(arrRockets[index]);
+        }
+    } else {
+        printRocketInfo(arrRockets[a]);
+    }
 }

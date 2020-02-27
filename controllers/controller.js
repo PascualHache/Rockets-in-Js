@@ -19,7 +19,6 @@ function toggle() {
         t2.style.display = "inline-block";
         t1.style.display = "none";
     }
-    clearFields();
 }
 function introduceRocket() {
     var codeName = document.getElementById("code");
@@ -28,6 +27,7 @@ function introduceRocket() {
     createRocket(codeName.value, thrusters.value, arrPrecessed);
     toggle();
     console.log(rocketsObj);
+    clearFields();
 }
 function validateForm() {
     if (validaCode() && validaThrusters() && validaPropulsores()) {
@@ -97,6 +97,8 @@ function clearFields() {
     var codeName = document.getElementById("code");
     var thrusters = document.getElementById("thrusters");
     var potencia = document.getElementById("potencia");
+    var rocEle = document.getElementById("rocketsList");
+    rocEle.innerHTML = "";
     if (codeName.value != "" || thrusters.value != "" || potencia.value != "") {
         codeName.value = "";
         thrusters.value = "";
@@ -104,20 +106,40 @@ function clearFields() {
     }
 }
 function printRocketInfo(code) {
+    // clearFields();
     var rocEle = document.getElementById("rocketsList");
-    rocEle.innerHTML += "Rocket code:" + code + " " + "Nº propulsores:" + rocketsObj[code].thrusters + "Boosters MAX power: " + rocketsObj[code].showBoosters() + " <br>";
+    rocEle.innerHTML += "Rocket code: " + code + " / Nº propulsores: " + rocketsObj[code].thrusters + " / Boosters MAX power: " + rocketsObj[code].showBoosters() + " / Current Speed: " + rocketsObj[code].currentSpeed + " <br>";
 }
 function accelerate(el) {
-    var a = getObjectNameId(el);
-    console.log(arrRockets);
-    rocketsObj[arrRockets[a]].acelera();
-    console.log(rocketsObj[arrRockets[a]].currentPower);
+    if (arrRockets.length < 1) {
+        alert("Primero introduce los cohetes");
+    }
+    else {
+        var a = getObjectNameId(el);
+        rocketsObj[arrRockets[a]].acelera();
+    }
 }
 function slow(el) {
-    var a = getObjectNameId(el);
-    rocketsObj[arrRockets[a]].frena();
-    console.log(rocketsObj[arrRockets[a]].currentPower);
+    if (arrRockets.length < 1) {
+        alert("Primero introduce los cohetes");
+    }
+    else {
+        var a = getObjectNameId(el);
+        rocketsObj[arrRockets[a]].frena();
+    }
 }
 function getObjectNameId(el) {
     return parseInt(el.id[el.id.length - 1]);
+}
+function printRocket(el) {
+    clearFields();
+    var a = getObjectNameId(el);
+    if (a == 2) {
+        for (var index = 0; index < arrRockets.length; index++) {
+            printRocketInfo(arrRockets[index]);
+        }
+    }
+    else {
+        printRocketInfo(arrRockets[a]);
+    }
 }
