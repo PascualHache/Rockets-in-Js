@@ -106,7 +106,6 @@ function clearFields() {
     }
 }
 function printRocketInfo(code) {
-    // clearFields();
     var rocEle = document.getElementById("rocketsList");
     rocEle.innerHTML += "Rocket code: " + code + " / Nº propulsores: " + rocketsObj[code].thrusters + " / Boosters MAX power: " + rocketsObj[code].showBoosters() + " / Current Speed: " + rocketsObj[code].currentSpeed + " <br>";
 }
@@ -133,13 +132,18 @@ function getObjectNameId(el) {
 }
 function printRocket(el) {
     clearFields();
-    var a = getObjectNameId(el);
-    if (a == 2) {
-        for (var index = 0; index < arrRockets.length; index++) {
-            printRocketInfo(arrRockets[index]);
-        }
+    if (arrRockets.length < 1) {
+        alert("Primero introduce los cohetes");
     }
     else {
-        printRocketInfo(arrRockets[a]);
+        var a = getObjectNameId(el);
+        if (a == 2) {
+            for (var index = 0; index < arrRockets.length; index++) {
+                printRocketInfo(arrRockets[index]);
+            }
+        }
+        else {
+            printRocketInfo(arrRockets[a]);
+        }
     }
 }
