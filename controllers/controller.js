@@ -39,15 +39,13 @@ function validateForm() {
     }
 }
 function validaPropulsores() {
-    var potencia = document.getElementById("potencia");
-    var numeroPropul = document.getElementById("thrusters");
-    var arr = potencia.value.split(",").map(Number);
-    arrPrecessed = validaArraydeNums(arr);
-    if (!potencia.checkValidity()) {
-        if (potencia.validity.valueMissing) {
+    var potenciaMax = document.getElementById("potencia");
+    var arr = potenciaMax.value.split(",").map(Number);
+    if (!validaArraydeNums(arr)) {
+        if (potenciaMax.validity.valueMissing) {
             alert("Introduce un valor numérico por número de propulsores separado por comas");
         }
-        else if (arrPrecessed.length != parseInt(numeroPropul.value)) {
+        else {
             alert("El número de propulsores no se corresponde con las potencias introducidas");
         }
         return false;
@@ -56,12 +54,22 @@ function validaPropulsores() {
 }
 function validaArraydeNums(arrPotencia) {
     var arrTemp = arrPotencia;
+    var potenciaMax = document.getElementById("potencia");
+    var numeroPropul = document.getElementById("thrusters");
     for (var index = 0; index < arrPotencia.length; index++) {
         if (isNaN(arrPotencia[index])) {
             arrTemp.splice(index, 1);
         }
     }
-    return arrTemp;
+    arrPrecessed = arrTemp;
+    if (arrTemp.length !== parseInt(numeroPropul.value)) {
+        potenciaMax.setCustomValidity("Invalid field.");
+        return false;
+    }
+    else {
+        potenciaMax.setCustomValidity("");
+    }
+    return true;
 }
 function validaCode() {
     var elemento = document.getElementById("code");
@@ -116,8 +124,6 @@ function accelerate(el) {
     else {
         var a = getObjectNameId(el);
         rocketsObj[arrRockets[a]].acelera();
-        // console.log("HHHHHHHHH");
-        // console.log(arrRockets[a])
         printRocket(el);
     }
 }
