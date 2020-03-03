@@ -116,6 +116,9 @@ function accelerate(el) {
     else {
         var a = getObjectNameId(el);
         rocketsObj[arrRockets[a]].acelera();
+        // console.log("HHHHHHHHH");
+        // console.log(arrRockets[a])
+        printRocket(el);
     }
 }
 function slow(el) {
@@ -125,6 +128,7 @@ function slow(el) {
     else {
         var a = getObjectNameId(el);
         rocketsObj[arrRockets[a]].frena();
+        printRocket(el);
     }
 }
 function getObjectNameId(el) {
